@@ -1,7 +1,7 @@
 /* eslint-disable import/extensions */
 import './js/main.js';
-import './sass/main.scss';
-import './sass/button.scss';
+import './css/main.css';
+import './css/button.css';
 import './css/style.css';
 import './css/flip-card.css';
 import './css/menu.css';

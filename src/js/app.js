@@ -17,9 +17,9 @@ const word = [
 const translation = [
   ['птичка', 'рыбка', 'жабка', 'жирафик', 'лев', 'мышка', 'черепашка', 'дeльфин'],
   ['котик', 'цыпленок', 'курочка', 'собачка', 'лошадка', 'свинья', 'кролик', 'овечка'],
-  ['грустный', 'сердитый', 'сердитый', 'уставший', 'удивлённый', 'испуганный', 'улыбка', 'смех'],
+  ['грустный', 'сердитый', 'счастливый', 'уставший', 'удивлённый', 'испуганный', 'улыбка', 'смех'],
   ['юбка', 'брюки', 'блузка', 'платье', 'ботинок', 'рубашка', 'пальто', 'туфли'],
-  ['хлеб', 'апельсин', 'сыр', 'арбуз', 'торт', 'сок', 'яблоко', 'конфета'],
+  ['апельсин','хлеб', 'сыр', 'арбуз', 'торт', 'сок', 'яблоко', 'конфета'],
   ['открывать', 'играть', 'указывать', 'ездить', 'бегать', 'петь', 'прыгать', 'плавать'],
   ['красный', 'белый', 'зеленый', 'желтый', 'черный', 'фиолетовый', 'голубой', 'серый'],
   ['нос', 'губы', 'волосы', 'щека', 'язык', 'глаз', 'рука', 'нога'],
@@ -65,6 +65,7 @@ const getStartScreen = (x) => {
         boxTitle.textContent = topics[i];
         box.appendChild(boxTitle);
         const image = document.createElement('img');
+        image.setAttribute('draggable', false);
         image.src = `images/${topics[i].toLowerCase()}.jpg`;
         image.classList.add('out');
         boxImage.appendChild(image);
@@ -191,6 +192,7 @@ let getClassroomScreen = (array) => {
       flipCardFront.appendChild(flipCardFrontImageContainer);
       const flipCardFrontImage = document.createElement('img');
       flipCardFrontImage.src = `images/${array[indexOfWord][i]}.jpg`;
+      flipCardFrontImage.setAttribute('draggable', false);
       flipCardFrontImageContainer.appendChild(flipCardFrontImage);
       const flipCardFrontTitle = document.createElement('div');
       flipCardFrontTitle.classList.add('card-title', 'center');
@@ -198,7 +200,7 @@ let getClassroomScreen = (array) => {
       flipCardFront.appendChild(flipCardFrontTitle);
       const flipCardFrontButtonContainer = document.createElement('div');
       flipCardFrontButtonContainer.classList.add('card-button', 'center');
-      flipCardFront.appendChild(flipCardFrontButtonContainer);
+      flipCardFrontTitle.appendChild(flipCardFrontButtonContainer);
       const flipCardFrontButton = document.createElement('div');
       flipCardFrontButton.classList.add('flip-button');
       flipCardFrontButtonContainer.appendChild(flipCardFrontButton);
@@ -234,12 +236,12 @@ let getClassroomScreen = (array) => {
       });
 
       // FLIP IN CARD
-      flipCardFrontButton.addEventListener('click', () => {
+      flipCardFrontTitle.addEventListener('click', () => {
         flipCard.classList.add('flip-card-rotate');
         flipCardFrontButton.style.opacity = '0';
         flipCardBack.style.visibility = 'visible';
         wordViewsCount = localStorage.getItem(`${array[indexOfWord][i]}`);
-        wordViewsCount += 1;
+        wordViewsCount++;
         localStorage.setItem(`${array[indexOfWord][i]}`, wordViewsCount);
       });
 
@@ -316,6 +318,7 @@ const getGameScreen = (arr) => {
     gameCard.appendChild(gameCardImageContainer);
     const gameCardImage = document.createElement('img');
     gameCardImage.src = `images/${arr[indexOfWord][i]}.jpg`;
+    gameCardImage.setAttribute('draggable', false);
     gameCardImageContainer.appendChild(gameCardImage);
 
     // SOUNDING CARDS
@@ -348,7 +351,7 @@ const getGameScreen = (arr) => {
           result.appendChild(starGreen);
           if ('localStorage' in window && window.localStorage !== null) {
             correctAnswersCount = localStorage.getItem(`correct-${arr[indexOfWord][i]}`);
-            correctAnswersCount += 1;
+            correctAnswersCount++;
             localStorage.setItem(`correct-${arr[indexOfWord][i]}`, correctAnswersCount);
           }
         } else {
@@ -363,7 +366,7 @@ const getGameScreen = (arr) => {
           }, 600);
           if ('localStorage' in window && window.localStorage !== null) {
             mistakesCount = localStorage.getItem(`fail-${arr[indexOfWord][wordID]}`);
-            mistakesCount += 1;
+            mistakesCount++;
             localStorage.setItem(`fail-${arr[indexOfWord][wordID]}`, mistakesCount);
           }
         }
@@ -373,7 +376,7 @@ const getGameScreen = (arr) => {
             setTimeout(getNewWord, 200);
           } else {
             isWin = (grayStarsCount === 0);
-            setTimeout(showResult, 1000);
+            setTimeout(showResult, 1200);
           }
         }
 
@@ -400,7 +403,6 @@ const getGameScreen = (arr) => {
   // RESULT SCREEN
   let showResult = () => {
     gameBoard.innerHTML = '';
-    document.body.style.background = (isWin) ? 'url(\'images/bg_looney.jpg\')' : 'url(\'images/sad_rabbit.jpg\') no-repeat center';
     const gameResultImage = document.createElement('img');
     gameResultImage.classList.add('result-image');
     gameResultImage.src = (isWin) ? 'images/win.png' : 'images/lose.png';
@@ -411,10 +413,10 @@ const getGameScreen = (arr) => {
     gameBoardContainer.appendChild(soundOfResult);
     setTimeout(() => {
       soundOfResult.play();
-    }, 200);
+    }, 400);
     setTimeout(() => {
       location.reload();
-    }, 4000);
+    }, 6000);
   };
 };
 
@@ -432,7 +434,6 @@ let changeMode = () => {
     mode.textContent = 'Game';
     result.style.display = 'block';
     entryTitle.style.display = 'none';
-    // getReady();
   } else {
     gameBoard.innerHTML = '';
     gameBoard.style.display = 'none';

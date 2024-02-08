@@ -38,10 +38,6 @@
               opacity 0.55s ease;
 }
 
-.menuToggle_hover span {
-  background: ho !important;
-}
-
 #menuToggle span:first-child {
   transform-origin: 0% 0%;
 }
@@ -66,6 +62,7 @@
 }
 
 #menu {
+  display: grid;
   position: absolute;
   width: 300px;
   margin: -100px 0 0 -50px;
@@ -102,7 +99,6 @@
 
 #menuToggle input:checked ~ ul {
   transform: none;
-  display: grid;
 }
 
 .item-menu {
