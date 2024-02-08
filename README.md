@@ -48,12 +48,3 @@
  
  ![](https://boriskrasko.github.io/english-for-kids/pages/efk-adaptive.png)
  
- 
- ### Classroom mode markup
- 
- ![](https://boriskrasko.github.io/english-for-kids/pages/efk-menu.png)
- 
- ### Testing game
- 
- ![](https://boriskrasko.github.io/english-for-kids/pages/efk-game.png)
- 
