@@ -13,16 +13,15 @@
   padding: 0;
   box-sizing: border-box;
 }
-html {
-  max-width: 1980px;
-  margin: 0 auto;
-}
 
 body {
   min-width: 320px;
   max-width: 1980px;
+  width: 100%;
   margin: 0 auto;
   font-family: Roboto, sans-serif;
+  border-left: 2px solid #ddd;
+  border-right: 2px solid #ddd;
 }
 
 button {
@@ -91,9 +90,9 @@ button {
 
 .container {
   width: 100%;
-  max-width: 1600px;
+  max-width: 1480px;
   height: auto;
-  min-height: 100vh;
+  min-height: 80vh;
   margin: 0 auto;
   display: flex;
   flex-wrap: wrap;
@@ -123,10 +122,10 @@ button {
 }
 
 .box, .card {
-  width: 280px;
-  height: 280px;
+  width: 260px;
+  height: 260px;
   margin: 20px;
-  font-size: 36px;
+  font-size: 32px;
   color: #fff;
   transition: 0.2s ease-in-out transform;
   opacity: 0.97;
@@ -145,7 +144,6 @@ button {
 .box-image {
   top: 0;
   width: 100%;
-  height: 180px;
   border-radius: 12px 12px 0 0;
   border-bottom: 2px solid #1114;
   overflow: hidden;
@@ -153,7 +151,6 @@ button {
 
 .box-image img {
   width: 100%;
-  height: 180px;
   border-radius: 12px 12px 0 0;
   transition: 0.8s ease-in-out transform;
 }
@@ -185,13 +182,21 @@ button {
 
 .box-title {
   width: 100%;
-  height: 100px;
+  height: 70px;
   border-radius: 0 0 12px 12px;
+}
+
+.flip-card-back .box-title {
+  height: 50px;
+  line-height: 20px;
+  font-size: 28px;
 }
 
 .card-title {
   width: 100%;
   height: 50px;
+  line-height: 20px;
+  font-size: 28px;
 }
 
 .shadow {
@@ -250,7 +255,7 @@ h1 {
 }
 
 .correct {
-  color: greenyellow;
+  color: rgb(15, 252, 82)
 }
 
 .error {
